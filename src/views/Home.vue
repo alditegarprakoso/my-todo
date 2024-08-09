@@ -1,7 +1,7 @@
 <template>
-  <div className="flex flex-col items-center justify-center p-3 h-[97vh]">
+  <div className="flex flex-col items-center justify-center p-3 min-h-screen">
     <!-- Illustration -->
-    <img src="../assets/images/illustration.jpg" alt="illustration" class="w-5/6" />
+    <img src="../assets/images/illustration.jpg" alt="illustration" class="w-[28%]" />
     <!-- Illustration -->
 
     <!-- Kickstart -->
@@ -17,7 +17,7 @@
     <!-- Kickstart -->
 
     <!-- Button Next -->
-    <Button buttonType="blue">
+    <Button buttonType="blue" @click="goTodo">
         Let's Go !
     </Button>
     <!-- Button Next -->
@@ -31,6 +31,11 @@ export default {
   name: "Home",
   components: {
     Button,
+  },
+  methods: {
+    goTodo() {
+      this.$router.push({ path: "/todo" });
+    },
   },
 };
 </script>
