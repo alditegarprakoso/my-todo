@@ -4,7 +4,7 @@ Aplikasi ini adalah untuk manajemen task/todo dilengkapi dengan tambah, edit, de
 
 ## Demo App
 
-[Deploy in Vercel](#)
+[Deploy in Vercel](https://my-todo-pi-drab.vercel.app/)
 
 ## Customize configuration
 
