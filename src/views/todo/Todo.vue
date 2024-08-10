@@ -20,9 +20,9 @@
       <!-- User -->
 
       <!-- News -->
-       <Button buttonType="news" :click="goToNews">
+      <Button buttonType="news" :click="goToNews">
         View the latest news
-       </Button>
+      </Button>
       <!-- News -->
     </div>
     <!-- Top -->
@@ -99,7 +99,13 @@
         <p class="text-slate-purple text-lg mb-5 urbanist-bold" v-if="!isEdit">
           Uncompleted Todo
         </p>
-        <div v-if="unCompletedTasks > 0 && filterTodos.length > 0 && !isEdit">
+        <div
+          v-if="
+            unCompletedTasks > 0 &&
+            filterTodos.filter((todo) => !todo.is_completed).length > 0 &&
+            !isEdit
+          "
+        >
           <div v-for="(todo, index) in filterTodos" :key="index" class="mb-5">
             <div
               v-if="!todo.is_completed"
@@ -110,13 +116,16 @@
                 :index="index"
                 :editTodoFunc="editTodoFunc"
                 :deleteTodo="deleteTodo"
+                @updateDataTodo="updateDataTodo($event)"
               />
             </div>
           </div>
         </div>
         <div
           v-else-if="
-            (unCompletedTasks < 1 || filterTodos.length < 1) && !isEdit
+            (unCompletedTasks < 1 ||
+              filterTodos.filter((todo) => !todo.is_completed).length < 1) &&
+            !isEdit
           "
         >
           <EmptyTask />
@@ -129,7 +138,13 @@
         <p class="text-slate-purple text-lg urbanist-bold mb-5" v-if="!isEdit">
           Completed Todo
         </p>
-        <div v-if="completedTasks > 0 && filterTodos.length > 0 && !isEdit">
+        <div
+          v-if="
+            completedTasks > 0 &&
+            filterTodos.filter((todo) => todo.is_completed).length > 0 &&
+            !isEdit
+          "
+        >
           <div
             v-if="filterTodos.length && !isEdit"
             v-for="(todo, index) in filterTodos"
@@ -146,13 +161,18 @@
                   :index="index"
                   :editTodoFunc="editTodoFunc"
                   :deleteTodo="deleteTodo"
+                  @updateDataTodo="updateDataTodo($event)"
                 />
               </div>
             </div>
           </div>
         </div>
         <div
-          v-else-if="(completedTasks < 1 || filterTodos.length < 1) && !isEdit"
+          v-else-if="
+            (completedTasks < 1 ||
+              filterTodos.filter((todo) => todo.is_completed).length < 1) &&
+            !isEdit
+          "
         >
           <EmptyTask />
         </div>
@@ -237,8 +257,9 @@ export default {
           date: new Date().toLocaleDateString("id-ID", option),
           is_completed: false,
         });
-
         this.filterTodos = this.masterTodos;
+        localStorage.setItem("masterTodos", JSON.stringify(this.masterTodos));
+
         this.newTodo = "";
         this.newDesc = "";
         this.$swal.fire("Added!", "Your todo has been added.", "success");
@@ -253,8 +274,10 @@ export default {
     updateTodo() {
       this.todoEdit.name = this.newTodo;
       this.todoEdit.description = this.newDesc;
+
       this.masterTodos[this.todoEdit.index] = this.todoEdit;
       this.filterTodos = this.masterTodos;
+      localStorage.setItem("masterTodos", JSON.stringify(this.masterTodos));
 
       this.isEdit = false;
       this.newTodo = "";
@@ -290,12 +313,32 @@ export default {
 
             this.masterTodos.splice(index, 1);
             this.filterTodos = this.masterTodos;
+            localStorage.setItem(
+              "masterTodos",
+              JSON.stringify(this.masterTodos)
+            );
           }
         });
     },
+    updateDataTodo(data) {
+      this.masterTodos[data.index].is_completed = data.is_completed;
+      this.filterTodos = this.masterTodos;
+      localStorage.setItem("masterTodos", JSON.stringify(this.masterTodos));
+    },
+    getLocalStorage() {
+      if (localStorage.getItem("masterTodos") === null) {
+        this.masterTodos = [];
+      } else {
+        this.masterTodos = JSON.parse(localStorage.getItem("masterTodos"));
+        this.filterTodos = this.masterTodos;
+      }
+    },
     goToNews() {
       this.$router.push({ path: "/news" });
-    }
+    },
+  },
+  created() {
+    this.getLocalStorage();
   },
   watch: {
     newTodo(newValue) {

@@ -1,10 +1,10 @@
 <template>
   <div class="mr-3 flex items-center">
     <input
-      v-model="todo.is_completed"
+      v-model="isCompleted"
       id="checkbox"
       type="checkbox"
-      class="w-4 h-4 mr-5 border-slate-blue bg-transparent"
+      class="w-4 h-4 mr-5 border-slate-blue bg-transparent cursor-pointer"
     />
     <div>
       <p
@@ -54,6 +54,27 @@ export default {
     },
     deleteTodo: {
       type: Function,
+    },
+  },
+  data() {
+    return {
+      isCompleted: this.todo.is_completed,
+    };
+  },
+  watch: {
+    isCompleted: {
+      handler(newValue) {
+        this.todo.is_completed = newValue;
+        if (newValue) {
+          this.$swal.fire(
+            "Completed!",
+            "Your todo has been completed.",
+            "success"
+          );
+        }
+        this.$emit("updateDataTodo", { is_completed: newValue, index: this.index });
+      },
+      deep: true,
     },
   },
 };
