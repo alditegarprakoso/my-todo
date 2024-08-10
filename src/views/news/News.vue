@@ -18,9 +18,10 @@
 
     <div class="flex flex-wrap justify-around w-full">
       <div
-        class="max-w-[30%] rounded overflow-hidden shadow-lg bg-white mb-8"
+        class="max-w-[30%] rounded overflow-hidden shadow-lg bg-white mb-8 cursor-pointer"
         v-for="(data, index) in newsFiltered"
         :key="index"
+        @click="gotoUrl(data.link)"
       >
         <img class="w-full" :src="data.thumbnail" alt="Placeholder Image" />
         <div class="px-6 py-4">
@@ -68,6 +69,9 @@ export default {
       } else {
         this.newsFiltered = this.news;
       }
+    },
+    gotoUrl(link) {
+      window.open(link, "_blank");
     },
   },
   created() {
