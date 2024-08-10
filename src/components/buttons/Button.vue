@@ -5,6 +5,7 @@
       [buttonBlue]: buttonType === 'blue',
       [buttonTodo]: buttonType === 'todo',
       [buttonCancelEdit]: buttonType === 'cancelEdit',
+      [buttonNews]: buttonType === 'news',
     }"
   >
     <slot></slot>
@@ -30,6 +31,8 @@ export default {
         "w-full bg-blue-ocean hover:bg-slate-purple-darker text-white font-bold py-2 px-4 rounded",
       buttonCancelEdit:
         "w-full bg-slate-purple hover:bg-slate-purple-darker text-white font-bold py-2 px-4 rounded",
+      buttonNews:
+        "w-full bg-blue-ocean hover:bg-slate-purple-darker text-white py-2 px-4 rounded-full w-auto",
     };
   },
 };

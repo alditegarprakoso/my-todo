@@ -1,7 +1,7 @@
 <template>
   <div class="px-48 py-10 min-h-screen">
     <!-- Top -->
-    <div class="flex justify-between items-center mb-4">
+    <div class="flex justify-between items-center mb-10">
       <!-- Logo -->
       <div class="flex items-center">
         <LogoIcon class="mr-3" />
@@ -13,10 +13,17 @@
 
       <!-- User -->
       <div class="flex items-center">
-        <p class="text-slate-purple mr-3 font-bold text-2xl">Username</p>
-        <img src="@/assets/images/user.png" alt="user" class="w-14" />
+        <p class="text-slate-purple mr-3 font-bold text-2xl">
+          {{ currentTime }}
+        </p>
       </div>
       <!-- User -->
+
+      <!-- News -->
+       <Button buttonType="news" :click="goToNews">
+        View the latest news
+       </Button>
+      <!-- News -->
     </div>
     <!-- Top -->
 
@@ -24,8 +31,8 @@
     <div class="flex justify-between items-center mb-10">
       <div>
         <p class="text-[28px] font-bold">
-          <span class="text-slate-purple">Welcome, </span>
-          <span class="text-blue-ocean">Username.</span>
+          <span class="text-slate-purple">Organize your </span>
+          <span class="text-blue-ocean">life</span>
         </p>
         <p class="text-slate-blue font-medium">
           You’ve got {{ unCompletedTasks }} tasks to do.
@@ -89,7 +96,7 @@
     <div v-if="masterTodos.length > 0">
       <!-- Todo Uncompleted -->
       <div>
-        <p class="text-slate-purple text-lg mb-5 urbanist-bold">
+        <p class="text-slate-purple text-lg mb-5 urbanist-bold" v-if="!isEdit">
           Uncompleted Todo
         </p>
         <div v-if="unCompletedTasks > 0 && filterTodos.length > 0 && !isEdit">
@@ -119,7 +126,7 @@
 
       <!-- Todo Completed -->
       <div>
-        <p class="text-slate-purple text-lg urbanist-bold mb-5">
+        <p class="text-slate-purple text-lg urbanist-bold mb-5" v-if="!isEdit">
           Completed Todo
         </p>
         <div v-if="completedTasks > 0 && filterTodos.length > 0 && !isEdit">
@@ -194,6 +201,7 @@ export default {
       filterTodos: [],
       todoEdit: null,
       isEdit: false,
+      currentTime: new Date().toLocaleDateString("id-ID"),
     };
   },
   methods: {
@@ -215,7 +223,7 @@ export default {
     },
     addTodo() {
       if (this.newTodo !== "") {
-        const optionDate = {
+        const option = {
           year: "numeric",
           month: "long",
           day: "numeric",
@@ -226,7 +234,7 @@ export default {
         this.masterTodos.push({
           name: this.newTodo,
           description: this.newDesc,
-          date: new Date().toLocaleDateString("id-ID", optionDate),
+          date: new Date().toLocaleDateString("id-ID", option),
           is_completed: false,
         });
 
@@ -284,6 +292,9 @@ export default {
             this.filterTodos = this.masterTodos;
           }
         });
+    },
+    goToNews() {
+      this.$router.push({ path: "/news" });
     }
   },
   watch: {
