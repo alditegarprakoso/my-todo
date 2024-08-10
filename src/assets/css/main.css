@@ -1,3 +1,43 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: 'Urbanist-Light';
+    src: url('../fonts/Urbanist-Light.ttf');
+}
+
+@font-face {
+    font-family: 'Urbanist-Regular';
+    src: local('Urbanist-Regular'), url('../fonts/Urbanist-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Urbanist-SemiBold';
+    src: url('../fonts/Urbanist-SemiBold.ttf');
+}
+
+@font-face {
+    font-family: 'Urbanist-Bold';
+    src: url('../fonts/Urbanist-Bold.ttf');
+}
+
+html {
+    font-family: 'Urbanist-Regular';
+}
+
+.urbanist-light {
+    font-family: 'Urbanist-Light';
+}
+
+.urbanist {
+    font-family: 'Urbanist-Regular';
+}
+
+.urbanist-semibold {
+    font-family: 'Urbanist-SemiBold';
+}
+
+.urbanist-bold {
+    font-family: 'Urbanist-Bold';
+}

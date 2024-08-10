@@ -1,16 +1,16 @@
 <template>
-  <div className="flex flex-col items-center justify-center p-3 min-h-screen">
+  <div className="flex flex-col items-center justify-evenly p-3 min-h-screen">
     <!-- Illustration -->
-    <img src="../assets/images/illustration.jpg" alt="illustration" class="w-[28%]" />
+    <img src="../assets/images/illustration.jpg" alt="illustration" class="w-[20%]" />
     <!-- Illustration -->
 
     <!-- Kickstart -->
     <div className="text-center mb-10">
-      <p className="text-2xl font-bold mb-7">
+      <p className="text-2xl urbanist-bold mb-7">
         Keep On Track <br />
         With MyTodo
       </p>
-      <p className="text-sm text-gray-400 italic">
+      <p className="text-lg text-gray-400 italic">
         Make Your Life Easier and Organized
       </p>
     </div>
