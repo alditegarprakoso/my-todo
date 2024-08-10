@@ -8,7 +8,7 @@ Aplikasi ini adalah untuk manajemen task/todo dilengkapi dengan tambah, edit, de
 
 ## Customize configuration
 
-See [Video demo in here]([https://vitejs.dev/config/](https://youtu.be/JgwiMvkE89M)).
+See [Video demo in here](https://youtu.be/JgwiMvkE89M).
 
 ## Project Setup
 
