@@ -1,14 +1,14 @@
-# .
+# My Todo App
 
-This template should help get you started developing with Vue 3 in Vite.
+Aplikasi ini adalah untuk manajemen task/todo dilengkapi dengan tambah, edit, delete, dan search task/todo.
 
-## Recommended IDE Setup
+## Demo App
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+[Deploy in Vercel](#)
 
 ## Customize configuration
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+See [Video demo in here]([https://vitejs.dev/config/](https://youtu.be/JgwiMvkE89M)).
 
 ## Project Setup
 
