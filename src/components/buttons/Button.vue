@@ -1,5 +1,12 @@
 <template>
-  <button :class="{ [buttonBlue]: buttonType === 'blue' }">
+  <button
+    @click="click"
+    :class="{
+      [buttonBlue]: buttonType === 'blue',
+      [buttonTodo]: buttonType === 'todo',
+      [buttonCancelEdit]: buttonType === 'cancelEdit',
+    }"
+  >
     <slot></slot>
   </button>
 </template>
@@ -19,6 +26,10 @@ export default {
     return {
       buttonBlue:
         "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-[25%]",
+      buttonTodo:
+        "w-full bg-blue-ocean hover:bg-slate-purple-darker text-white font-bold py-2 px-4 rounded",
+      buttonCancelEdit:
+        "w-full bg-slate-purple hover:bg-slate-purple-darker text-white font-bold py-2 px-4 rounded",
     };
   },
 };

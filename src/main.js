@@ -1,11 +1,14 @@
-import './assets/css/main.css'
+import "./assets/css/main.css";
 
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
+import SweetAlert from "./plugins/sweetalert.js";
 
-const app = createApp(App)
+import { createApp } from "vue";
+import App from "./App.vue";
+import router from "./router";
 
-app.use(router)
+const app = createApp(App);
 
-app.mount('#app')
+app.use(router);
+app.use(SweetAlert);
+
+app.mount("#app");

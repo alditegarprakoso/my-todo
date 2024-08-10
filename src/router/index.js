@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '@/views/Home.vue'
-import Todo from '@/views/Todo.vue'
+import Todo from '@/views/todo/Todo.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
